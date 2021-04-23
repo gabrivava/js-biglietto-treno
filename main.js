@@ -13,19 +13,30 @@ var eta = prompt("eta del passeggero");
 var prezzoBase = 0.21;
 var costoBiglietto;
 
-// sconti
-var scontiMinori = 0.21 - (0.21 / 100 * 20);
-var scontiOver = 0.21 - (0.21 / 100 * 40);
-//output
-var messaggio = 'il costo del tuo biglietto è ' + costoBiglietto.toFixed(2) + ' €';
-if (eta < 18) {
-    costoBiglietto = distance * scontiMinori;
-} else if (eta > 65) {
-    costoBiglietto = distance * scontiOver;
+distance = parseInt(distance);
+eta = parseInt(eta);
+
+if (isNaN(distance) || isNaN(eta)) {
+    alert('hai sbagliato.')
 } else {
-    costoBiglietto = distance * prezzoBase;
+
+    // sconti
+    var scontiMinori = 0.21 - (0.21 / 100 * 20);
+    var scontiOver = 0.21 - (0.21 / 100 * 40);
+    //output
+    
+    if (eta < 18) {
+        costoBiglietto = distance * scontiMinori;
+    } else if (eta > 65) {
+        costoBiglietto = distance * scontiOver;
+    } else {
+        costoBiglietto = distance * prezzoBase;
+    }  
+    var messaggio = 'il costo del tuo biglietto è ' + costoBiglietto.toFixed(2) + ' €';
+
+    // display the result
+    document.getElementById('msg_biglietto').innerHTML = messaggio;
+
+
 }
 
-
-// display the result
-document.getElementById('msg_biglietto').innerHTML = messaggio;
